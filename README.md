@@ -24,6 +24,9 @@ To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the fo
 
 You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
 
-## How do I deploy this?
+Pengalaman Belajar di Dicoding
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+14 Juni 2021
+Belajar kelas Memulai Pemrograman dengan Java. (Progres 21%)
+* Belajar tentang apa itu Java dan alasan menggunakannya.
+* Belajar tools yang dapat digunakan untuk menjalankan bahasa pemrograman Java.
