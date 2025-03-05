@@ -1,33 +1,27 @@
-import { Check } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { FcGoogle } from "react-icons/fc";
 import { Pagecontainer } from "~/components/layout/PageContainer";
 import { SectionContainer } from "~/components/layout/SectionContainer";
 import { Button } from "~/components/ui/button";
-import { Card, CardContent, CardHeader } from "~/components/ui/card";
-import { Checkbox } from "~/components/ui/checkbox";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "~/components/ui/form";
-import { Input } from "~/components/ui/input";
-import { Label } from "~/components/ui/label";
-import { registerFormSchema, type RegisterFormSchema } from "../forms/register";
+
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import { check } from "prettier";
+import Link from "next/link";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "~/components/ui/card";
+import { Form } from "~/components/ui/form";
+import { RegisterFormInner } from "../components/RegisterFormInner";
+import { registerFormSchema, type RegisterFormSchema } from "../forms/register";
 
 const RegisterPage = () => {
-  const [showPassword, setShowPassword] = useState<boolean>(false);
   const form = useForm<RegisterFormSchema>({
     resolver: zodResolver(registerFormSchema),
   });
 
-  const onRegsiterSubmit = (values: RegisterFormSchema) => {
+  const handleRegisterSubmit = (values: RegisterFormSchema) => {
     alert("tre");
   };
   return (
@@ -43,57 +37,31 @@ const RegisterPage = () => {
           </CardHeader>
           <CardContent>
             <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onRegsiterSubmit)}
-                className="flex flex-col gap-y-1"
-              >
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel> Email</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Email" {...field} />
-                      </FormControl>
-                      <FormDescription />
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel> Password</FormLabel>
-                      <FormControl>
-                        <Input
-                          type={showPassword ? "text" : "password"}
-                          placeholder="Password"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormDescription />
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Label className="flex items-center gap-2">
-                  <Checkbox
-                    checked={showPassword}
-                    onCheckedChange={(checked) => setShowPassword(!!checked)}
-                  />
-                  Show Password
-                </Label>
-
-                <Button type="submit" className="mt-4 w-full">
-                  {" "}
-                  Buat Akun
-                </Button>
-              </form>
+              <RegisterFormInner onRegsiterSubmit={handleRegisterSubmit} />
             </Form>
           </CardContent>
+
+          <CardFooter className="fex flex-col gap-4">
+            <div className="flex w-full items-center justify-between">
+              <div className="h-[2px] w-full border-t-2" />
+              <p className="flex-1 text-nowrap text-muted-foreground">
+                atau daftar dengan
+              </p>
+              <div className="h-[2px] w-full border-t-2" />
+            </div>
+
+            <Button variant="secondary" className="w-full" size="lg">
+              <FcGoogle />
+              Google
+            </Button>
+
+            <p>
+              Sudah punya akun?{" "}
+              <Link className="font-bold text-purple-700" href="/login">
+                Login
+              </Link>
+            </p>
+          </CardFooter>
         </Card>
       </SectionContainer>
     </Pagecontainer>
