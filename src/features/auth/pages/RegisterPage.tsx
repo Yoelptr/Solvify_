@@ -1,7 +1,10 @@
+import { Check } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { Pagecontainer } from "~/components/layout/PageContainer";
 import { SectionContainer } from "~/components/layout/SectionContainer";
+import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
+import { Checkbox } from "~/components/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -12,9 +15,11 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
+import type { RegisterFormSchema } from "../forms/register";
 
 const RegisterPage = () => {
-  const form = useForm();
+  const form = useForm<RegisterFormSchema>();
   return (
     <Pagecontainer>
       <SectionContainer
@@ -28,7 +33,7 @@ const RegisterPage = () => {
           </CardHeader>
           <CardContent>
             <Form {...form}>
-              <form action="" className="sapace-y-1">
+              <form action="" className="flex flex-col gap-y-1">
                 <FormField
                   control={form.control}
                   name="email"
@@ -61,6 +66,15 @@ const RegisterPage = () => {
                     </FormItem>
                   )}
                 />
+                <Label className="flex items-center gap-2">
+                  <Checkbox />
+                  Show Password
+                </Label>
+
+                <Button type="submit" className="mt-4 w-full">
+                  {" "}
+                  Buat Akun
+                </Button>
               </form>
             </Form>
           </CardContent>
