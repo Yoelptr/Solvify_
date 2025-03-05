@@ -1,9 +1,9 @@
 import z from "zod";
+import { emailSchema, passwordSchema } from "~/shcemas/auth";
 
 export const registerFormSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(6),
-  confirmPassword: z.string().min(6),
+  email: emailSchema,
+  password: passwordSchema,
 });
 
 export type RegisterFormSchema = z.infer<typeof registerFormSchema>;

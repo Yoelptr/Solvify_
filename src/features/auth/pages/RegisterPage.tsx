@@ -16,10 +16,17 @@ import {
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import type { RegisterFormSchema } from "../forms/register";
+import { registerFormSchema, type RegisterFormSchema } from "../forms/register";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const RegisterPage = () => {
-  const form = useForm<RegisterFormSchema>();
+  const form = useForm<RegisterFormSchema>({
+    resolver: zodResolver(registerFormSchema),
+  });
+
+  const onRegsiterSubmit = (values: RegisterFormSchema) => {
+    alert("tre");
+  };
   return (
     <Pagecontainer>
       <SectionContainer
@@ -33,7 +40,10 @@ const RegisterPage = () => {
           </CardHeader>
           <CardContent>
             <Form {...form}>
-              <form action="" className="flex flex-col gap-y-1">
+              <form
+                onSubmit={form.handleSubmit(onRegsiterSubmit)}
+                className="flex flex-col gap-y-1"
+              >
                 <FormField
                   control={form.control}
                   name="email"
