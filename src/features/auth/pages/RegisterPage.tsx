@@ -18,8 +18,11 @@ import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { registerFormSchema, type RegisterFormSchema } from "../forms/register";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { check } from "prettier";
 
 const RegisterPage = () => {
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const form = useForm<RegisterFormSchema>({
     resolver: zodResolver(registerFormSchema),
   });
@@ -66,7 +69,7 @@ const RegisterPage = () => {
                       <FormLabel> Password</FormLabel>
                       <FormControl>
                         <Input
-                          type="password"
+                          type={showPassword ? "text" : "password"}
                           placeholder="Password"
                           {...field}
                         />
@@ -77,7 +80,10 @@ const RegisterPage = () => {
                   )}
                 />
                 <Label className="flex items-center gap-2">
-                  <Checkbox />
+                  <Checkbox
+                    checked={showPassword}
+                    onCheckedChange={(checked) => setShowPassword(!!checked)}
+                  />
                   Show Password
                 </Label>
 
